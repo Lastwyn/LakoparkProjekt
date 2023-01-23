@@ -16,5 +16,6 @@ namespace LakoparkProjekt
         }
 
         internal List<Lakopark> Lakoparkok { get => lakoparkok; set => lakoparkok = value; }
+        
     }
 }
