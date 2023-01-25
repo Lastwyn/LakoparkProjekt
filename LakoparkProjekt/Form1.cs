@@ -16,8 +16,7 @@ namespace LakoparkProjekt
 {
     public partial class Form1 : Form
     {
-        
-        HappyLiving kell = new HappyLiving(new List<Lakopark>());
+        HappyLiving kell = new Database().getAllLakopark();
         string keput = @"..//../Kepek/";
         int oldalszama = 0;
         public Form1()
@@ -71,24 +70,24 @@ namespace LakoparkProjekt
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string lines = System.IO.File.ReadAllText(@"..//../lakoparkok.txt");
-          //  MessageBox.Show(Regex.Escape(lines));
-            string[] lines1 = Regex.Split(lines, Environment.NewLine + Environment.NewLine);
+            /*   string lines = System.IO.File.ReadAllText(@"..//../lakoparkok.txt");
+             //  MessageBox.Show(Regex.Escape(lines));
+               string[] lines1 = Regex.Split(lines, Environment.NewLine + Environment.NewLine);
 
-            for (int i = 0; i < lines1.Length-1; i++)
-            {
-                string[] cod = lines1[i].Split('\n');
-                string[] asd = cod[1].Split(';');
-               // MessageBox.Show(asd[0] + " " + asd[1]);
-                int[,] hazak = new int[Convert.ToInt32(asd[0]),Convert.ToInt32(asd[1])];
-              //  MessageBox.Show(hazak.GetLength(0) + " " + hazak.GetLength(1));
-                for (int j = 2; j < cod.Length; j++)
-                {
-                    string[] szet = cod[j].Split(';');
-                    hazak[Convert.ToInt32(szet[0]) - 1, Convert.ToInt32(szet[1]) - 1] = Convert.ToInt32(szet[2]);
-                }
-                kell.Lakoparkok.Add(new Lakopark(hazak, Convert.ToInt32(asd[0]), cod[0].Replace("\r", ""), Convert.ToInt32(asd[1])));
-            }
+               for (int i = 0; i < lines1.Length-1; i++)
+               {
+                   string[] cod = lines1[i].Split('\n');
+                   string[] asd = cod[1].Split(';');
+                  // MessageBox.Show(asd[0] + " " + asd[1]);
+                   int[,] hazak = new int[Convert.ToInt32(asd[0]),Convert.ToInt32(asd[1])];
+                 //  MessageBox.Show(hazak.GetLength(0) + " " + hazak.GetLength(1));
+                   for (int j = 2; j < cod.Length; j++)
+                   {
+                       string[] szet = cod[j].Split(';');
+                       hazak[Convert.ToInt32(szet[0]) - 1, Convert.ToInt32(szet[1]) - 1] = Convert.ToInt32(szet[2]);
+                   }
+                   kell.Lakoparkok.Add(new Lakopark(hazak, Convert.ToInt32(asd[0]), cod[0].Replace("\r", ""), Convert.ToInt32(asd[1])));
+               }*/
             valtas(kell.Lakoparkok[oldalszama]);
             nyilak();
         }
@@ -132,7 +131,11 @@ namespace LakoparkProjekt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string[] datum = Regex.Split(DateTime.Now.ToString(), ". ");
+            bool siker = new Database().mentes(kell);
+            
+            
+            
+            /*  string[] datum = Regex.Split(DateTime.Now.ToString(), ". ");
             File.Move(@"..//../lakoparkok.txt", $"..//../lakoparkok_{datum[0]}{datum[1]}{datum[2]}{datum[3].Replace(":", "")}.txt");
             string filesave = "";
             foreach (Lakopark lp in kell.Lakoparkok)
@@ -147,7 +150,7 @@ namespace LakoparkProjekt
                 }
                 filesave += Environment.NewLine;
             }
-            File.WriteAllText(@"..//../lakoparkok.txt", filesave);
+            File.WriteAllText(@"..//../lakoparkok.txt", filesave);*/
 
         }
     }
